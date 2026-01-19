@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:sajilo_upachar_ai/features/auth/dashboard/presentation/pages/features_screen.dart';
 
 import 'package:sajilo_upachar_ai/features/diet/presentation/pages/diet_page.dart';
-
+import 'package:sajilo_upachar_ai/features/chatbot/presentation/pages/chatbot_page.dart';
 import 'package:sajilo_upachar_ai/features/auth/doctor_summary/presentation/pages/doctor_summary_page.dart';
+import 'package:sajilo_upachar_ai/features/auth/dashboard/presentation/pages/features_screen.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -78,10 +78,7 @@ class DashboardPage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text("Show All"),
-                    ),
+                    TextButton(onPressed: () {}, child: const Text("Show All")),
                   ],
                 ),
               ),
@@ -99,57 +96,36 @@ class DashboardPage extends StatelessWidget {
                   mainAxisSpacing: 12,
                   childAspectRatio: 0.85,
                   children: [
-                    _categoryCard(
-                      "Diet",
-                      Icons.restaurant,
-                      () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const DietPage(),
-                          ),
-                        );
-                      },
-                    ),
-                    _categoryCard(
-                      "Exercise",
-                      Icons.fitness_center,
-                      () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const ExerciseScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    _categoryCard(
-                      "ChatBot",
-                      Icons.smart_toy,
-                      () {},
-                    ),
-                    _categoryCard(
-                      "Hospital",
-                      Icons.local_hospital,
-                      () {},
-                    ),
-                    _categoryCard(
-                      "Emergency",
-                      Icons.emergency,
-                      () {},
-                    ),
-                    _categoryCard(
-                      "Reports",
-                      Icons.description,
-                      () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const DoctorSummaryPage(),
-                          ),
-                        );
-                      },
-                    ),
+                    _categoryCard("Diet", Icons.restaurant, () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const DietPage()),
+                      );
+                    }),
+                    _categoryCard("Exercise", Icons.fitness_center, () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const ExerciseScreen(),
+                        ),
+                      );
+                    }),
+                    _categoryCard("ChatBot", Icons.smart_toy, () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const ChatBotPage()),
+                      );
+                    }),
+                    _categoryCard("Hospital", Icons.local_hospital, () {}),
+                    _categoryCard("Emergency", Icons.emergency, () {}),
+                    _categoryCard("Reports", Icons.description, () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const DoctorSummaryPage(),
+                        ),
+                      );
+                    }),
                   ],
                 ),
               ),
@@ -159,10 +135,7 @@ class DashboardPage extends StatelessWidget {
               // 🔹 TOP DOCTORS
               const Text(
                 "Top Doctors",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
 
               const SizedBox(height: 15),
@@ -180,11 +153,7 @@ class DashboardPage extends StatelessWidget {
   }
 
   // 🔹 CATEGORY CARD
-  Widget _categoryCard(
-    String title,
-    IconData icon,
-    VoidCallback onTap,
-  ) {
+  Widget _categoryCard(String title, IconData icon, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -227,10 +196,7 @@ class DashboardPage extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.08),
-            blurRadius: 10,
-          ),
+          BoxShadow(color: Colors.grey.withOpacity(0.08), blurRadius: 10),
         ],
       ),
       child: Row(
@@ -263,10 +229,7 @@ class DashboardPage extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   role,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 13,
-                  ),
+                  style: const TextStyle(color: Colors.grey, fontSize: 13),
                 ),
               ],
             ),
