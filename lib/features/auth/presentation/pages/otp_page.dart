@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sajilo_upachar_ai/features/auth/ai_call/presentation/widgets/auth_widgets.dart';
 import '../widgets/auth_background.dart';
-import '../../dashboard/presentation/pages/dashboard_page.dart';
+import 'login_page.dart';
 
 class OtpPage extends StatelessWidget {
   const OtpPage({super.key});
@@ -16,8 +16,7 @@ class OtpPage extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 30),
-                const Icon(Icons.lock_outline,
-                    size: 80, color: Colors.teal),
+                const Icon(Icons.lock_outline, size: 80, color: Colors.teal),
                 const SizedBox(height: 10),
                 const Text(
                   "OTP Verification",
@@ -37,14 +36,28 @@ class OtpPage extends StatelessWidget {
                 AuthCard(
                   child: Column(
                     children: [
-                      _otpField(),
-
+                      _OtpInputRow(),
                       const SizedBox(height: 20),
-                      primaryButton("Verify OTP"),
+
+                      // ✅ VERIFY OTP → LOGIN PAGE
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const LoginPage(),
+                            ),
+                            (route) => false,
+                          );
+                        },
+                        child: primaryButton("Verify OTP"),
+                      ),
 
                       const SizedBox(height: 15),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // TODO: resend OTP logic later
+                        },
                         child: const Text("Resend OTP"),
                       ),
                     ],
@@ -57,21 +70,22 @@ class OtpPage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _otpField() {
+class _OtpInputRow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(
         6,
-        (_) => SizedBox(
+        (index) => SizedBox(
           width: 45,
           child: TextField(
             keyboardType: TextInputType.number,
             textAlign: TextAlign.center,
             maxLength: 1,
-            decoration: const InputDecoration(
-              counterText: "",
-            ),
+            decoration: const InputDecoration(counterText: ""),
           ),
         ),
       ),

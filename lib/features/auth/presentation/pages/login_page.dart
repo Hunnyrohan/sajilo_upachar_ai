@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sajilo_upachar_ai/features/auth/ai_call/presentation/widgets/auth_widgets.dart';
+import 'package:sajilo_upachar_ai/features/auth/dashboard/presentation/pages/dashboard_screen.dart';
 import '../widgets/auth_background.dart';
+
 import 'signup_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -57,8 +59,21 @@ class LoginPage extends StatelessWidget {
                         ],
                       ),
 
-                      const SizedBox(height: 10),
-                      primaryButton("Login"),
+                      const SizedBox(height: 20),
+
+                      // ✅ LOGIN → DASHBOARD
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const DashboardPage(),
+                            ),
+                            (route) => false,
+                          );
+                        },
+                        child: primaryButton("Login"),
+                      ),
 
                       const SizedBox(height: 15),
                       const Text("Or continue with"),
